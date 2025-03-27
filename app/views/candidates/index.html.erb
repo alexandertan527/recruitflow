@@ -1,0 +1,14 @@
+<%= link_to 'New Candidate', new_candidate_path %>
+
+<h1>Candidates</h1>
+
+<%= table_for @candidates, [:id, 'Name', 'Current Position', :status, :email, :phone_number, 'Created Date' ] do |candidate| %>
+  <%= field link_to(candidate.id, candidate_path(candidate)) %>
+  <%= field link_to("#{candidate.first_name} #{candidate.last_name}", candidate_path(candidate)) %>
+  <%= field candidate.current_job_title %>
+  <%= field candidate.status %>
+  <%= field candidate.email %>
+  <%= field candidate.phone_number %>
+  <%= field candidate.created_at %>
+  <%= field "#{candidate.user.first_name} #{candidate.user.last_name}" %>
+<% end %>

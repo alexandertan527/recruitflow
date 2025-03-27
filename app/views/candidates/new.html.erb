@@ -1,0 +1,9 @@
+<%= simple_form_for(@candidate) do |f| %>
+    <%= f.input :first_name %>
+    <%= f.input :last_name %>
+    <%= f.input :email %>
+    <%= f.input :phone_number %>
+    <%= f.input :current_job_title %>
+    <%= f.input :status %>
+    <%= f.submit "Save List", class: "btn btn-primary" %>
+<% end %>
