@@ -2,7 +2,7 @@
 
 <h1>Candidates</h1>
 
-<%= table_for @candidates, [:id, 'Name', 'Current Position', :status, :email, :phone_number, 'Created Date' ] do |candidate| %>
+<%= table_for @candidates, [:id, 'Name', 'Current Position', :status, :email, :phone_number, 'Created Date', 'Owner' ] do |candidate| %>
   <%= field link_to(candidate.id, candidate_path(candidate)) %>
   <%= field link_to("#{candidate.first_name} #{candidate.last_name}", candidate_path(candidate)) %>
   <%= field candidate.current_job_title %>

@@ -5,10 +5,12 @@
 
 require_relative "data/users"
 require_relative "data/candidates"
+require_relative "data/clients"
 
 p "Destroying existing records..."
 User.destroy_all
 Candidate.destroy_all
+Client.destroy_all
 p "Records destroyed"
 
 p "Creating users..."
@@ -18,3 +20,7 @@ p "Users created"
 p "Creating candidates..."
 candidates.each { |candidate| Candidate.create!(candidate) }
 p "Candidates created"
+
+p "Creating clients..."
+clients.each { |client| Client.create!(client) }
+p "Clients created..."

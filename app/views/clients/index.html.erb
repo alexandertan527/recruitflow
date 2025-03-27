@@ -1,0 +1,12 @@
+<%= link_to 'New Client', new_client_path %>
+
+<h1>Clients</h1>
+
+<%= table_for @clients, [:id, :name, :sector, :status, 'Created Date', 'Owner'] do |client| %>
+  <%= field link_to(client.id, client_path(client)) %>
+  <%= field link_to(client.name, client_path(client)) %>
+  <%= field client.sector %>
+  <%= field client.status %>
+  <%= field client.created_at %>
+  <%= field "#{client.user.first_name} #{client.user.last_name}" %>
+<% end %>

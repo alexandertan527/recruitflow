@@ -1,0 +1,6 @@
+<%= simple_form_for(@client) do |f| %>
+  <%= f.input :name %>
+  <%= f.input :sector %>
+  <%= f.input :status, collection: [ "Active", "Hiring", "Passive Account", "Inactive" ], as: :select %>
+  <%= f.submit "Save List", class: "btn btn-primary" %>
+<% end %>
