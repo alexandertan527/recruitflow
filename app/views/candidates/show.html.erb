@@ -1,5 +1,5 @@
 <%= link_to "Edit Candidate", edit_candidate_path %>
-<%= link_to "Delete Candidate", candidate_path(@candidate), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+<%= link_to "Delete Candidate", candidate_path(@candidate), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}  %>
 
 <h3><%= @candidate.id %></h3> <h1><%= @candidate.first_name %> <%= @candidate.last_name %></h1>
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_03_27_150758) do
+ActiveRecord::Schema[7.1].define(version: 2025_03_29_230053) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -25,6 +25,21 @@ ActiveRecord::Schema[7.1].define(version: 2025_03_27_150758) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_candidates_on_user_id"
+  end
+
+  create_table "client_contacts", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "position"
+    t.string "phone_number"
+    t.string "email"
+    t.string "status"
+    t.bigint "client_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["client_id"], name: "index_client_contacts_on_client_id"
+    t.index ["user_id"], name: "index_client_contacts_on_user_id"
   end
 
   create_table "clients", force: :cascade do |t|
@@ -52,5 +67,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_03_27_150758) do
   end
 
   add_foreign_key "candidates", "users"
+  add_foreign_key "client_contacts", "clients"
+  add_foreign_key "client_contacts", "users"
   add_foreign_key "clients", "users"
 end
