@@ -15,3 +15,4 @@ def contacts
     }
   end
 end
+

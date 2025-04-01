@@ -8,5 +8,6 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
   resources :candidates
   resources :clients
+  resources :client_contacts
 
 end

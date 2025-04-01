@@ -1,0 +1,12 @@
+<%= link_to "Edit Contact", edit_client_contact_path %>
+<%= link_to "Delete Contact", client_contact_path(@contact), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+
+
+<h3><%= @contact.id %></h3> <h1><%= @contact.first_name %> <%= @contact.last_name %></h1>
+
+<p><%= link_to("#{@contact.client.name}", client_path(@contact.client)) %></p>
+<p><%= @contact.position %></p>
+<p><%= @contact.status %></p>
+<p><%= @contact.phone_number %></p>
+<p><%= @contact.email %></p>
+<p><%= @contact.created_at %></p>

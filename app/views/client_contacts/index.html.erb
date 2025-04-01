@@ -1,0 +1,15 @@
+<%= link_to 'New Contact', new_client_contact_path %>
+
+<h1>Contacts</h1>
+
+<%= table_for @contacts, [:id, 'name', :client, :position, :status, :phone_number, :email, 'Created Date', 'Owner'] do |contact| %>
+  <%= field link_to(contact.id, client_contact_path(contact)) %>
+  <%= field link_to("#{contact.first_name} #{contact.last_name}", client_contact_path(contact)) %>
+  <%= field link_to("#{contact.client.name}", client_path(contact.client) ) %>
+  <%= field contact.position %>
+  <%= field contact.status %>
+  <%= field contact.phone_number %>
+  <%= field contact.email %>
+  <%= field contact.created_at %>
+  <%= field "#{contact.user.first_name} #{contact.user.last_name}" %>
+<% end %>
