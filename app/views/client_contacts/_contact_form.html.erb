@@ -1,7 +1,7 @@
 <%= simple_form_for(@contact) do |f| %>
   <%= f.input :first_name %>
   <%= f.input :last_name %>
-  <%= f.input :client %>
+  <%= f.select :client_id, Client.pluck(:name, :id), {include_blank: true}, { data: { controller: "form" } } %>
   <%= f.input :position %>
   <%= f.input :status, collection: [ "Active", "Hiring", "Inactive" ], as: :select %>
   <%= f.input :phone_number %>
