@@ -9,5 +9,6 @@ Rails.application.routes.draw do
   resources :candidates
   resources :clients
   resources :client_contacts
+  resources :jobs
 
 end
