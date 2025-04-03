@@ -1,0 +1,13 @@
+<%= link_to "Edit Job", edit_job_path %>
+<%= link_to "Delete Job", job_path(@job), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+
+
+<h3><%= @job.id %></h3> <h1><%= @job.job_title %></h1>
+
+<p><%= link_to("#{@job.client_contact.first_name} #{@job.client_contact.last_name}", client_contact_path(@job.client_contact)) %></p>
+<p><%= link_to("#{@job.client_contact.client.name}", client_path(@job.client_contact.client)) %></p>
+<p><%= @job.status %></p>
+<p><%= @job.employment_type %></p>
+<p><%= @job.salary %></p>
+<p><%= @job.user.first_name %> <%= @job.user.last_name %></p>
+<p><%= @job.created_at %></p>
