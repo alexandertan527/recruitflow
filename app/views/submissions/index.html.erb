@@ -1,0 +1,11 @@
+<h1>Submissions</h1>
+
+<%= table_for @submissions, [:id, :candidate, :job, 'Contact', 'Client', 'Created Date', 'Owner'] do |submission| %>
+  <%= field link_to(submission.id, submission_path(submission)) %>
+  <%= field link_to("#{submission.candidate.first_name} #{submission.candidate.last_name}", candidate_path(submission.candidate)) %>
+  <%= field link_to("#{submission.job.job_title}", job_path(submission.job)) %>
+  <%= field link_to("#{submission.job.client_contact.first_name} #{submission.job.client_contact.last_name}", client_contact_path(submission.job.client_contact) ) %>
+  <%= field link_to("#{submission.job.client_contact.client.name}", client_path(submission.job.client_contact.client)) %>
+  <%= field submission.created_at %>
+  <%= field "#{submission.user.first_name} #{submission.user.last_name}" %>
+<% end %>
