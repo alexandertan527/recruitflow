@@ -9,3 +9,19 @@
 <p><%= @candidate.current_job_title %></p>
 <p><%= @candidate.user.first_name %> <%= @candidate.user.last_name %></p>
 <p><%= @candidate.created_at %></p>
+
+<h2>Submissions</h2>
+
+<% if @candidate.submissions.count == 0 %>
+  <p>This candidate has no submissions yet!</p>
+<% else %>
+  <%= table_for @candidate.submissions, [:id, :job, 'Contact', 'Client', 'Created Date', 'Owner'] do |submission| %>
+    <%= field link_to(submission.id, candidate_submission_path(submission.candidate, submission)) %>
+    <%= field link_to("#{submission.job.job_title}", job_path(submission.job)) %>
+    <%= field link_to("#{submission.job.client_contact.first_name} #{submission.job.client_contact.last_name}", client_contact_path(submission.job.client_contact) ) %>
+    <%= field link_to("#{submission.job.client_contact.client.name}", client_path(submission.job.client_contact.client)) %>
+    <%= field submission.created_at %>
+    <%= field "#{submission.user.first_name} #{submission.user.last_name}" %>
+    <%= link_to "Delete", submission_path(submission, redirect_to: candidate_path(@candidate)), data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this submission?"} %>
+  <% end %>
+<% end %>

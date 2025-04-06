@@ -10,12 +10,16 @@ class SubmissionsController < ApplicationController
 
   def destroy
     @submission.destroy
-    redirect_to submissions_path
+    redirect_to params[:redirect_to].presence || submissions_path, notice: "Submission was deleted"
   end
 
   private
 
   def set_submission
     @submission = Submission.find(params[:id])
+  end
+
+  def find_candidate
+    # @candidate = Candidate.find(params[:candidate_id])
   end
 end
