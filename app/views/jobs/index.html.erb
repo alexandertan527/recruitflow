@@ -2,12 +2,13 @@
 
 <h1>Jobs</h1>
 
-<%= table_for @jobs, [:id, :job_title, :client_contact, 'Client', :status, :employment_type, :salary, 'Created Date', 'Owner'] do |job| %>
+<%= table_for @jobs, [:id, :job_title, :client_contact, 'Client', :status, 'Open', :employment_type, :salary, 'Created Date', 'Owner'] do |job| %>
   <%= field link_to(job.id, job_path(job)) %>
   <%= field link_to("#{job.job_title}", job_path(job)) %>
   <%= field link_to("#{job.client_contact.first_name} #{job.client_contact.last_name}", client_contact_path(job.client_contact) ) %>
   <%= field link_to("#{job.client_contact.client.name}", client_path(job.client_contact.client)) %>
   <%= field job.status %>
+  <%=  field job.is_live ? "Yes" : "No" %>
   <%= field job.employment_type %>
   <%= field job.salary %>
   <%= field job.created_at %>

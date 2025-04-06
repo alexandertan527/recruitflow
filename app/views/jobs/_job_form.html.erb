@@ -1,0 +1,9 @@
+<%= simple_form_for(@job) do |f| %>
+  <%= f.input :job_title %>
+  <%= f.select :client_contact_id, ClientContact.all.map { |c| ["#{c.first_name} #{c.last_name}", c.id]}, {include_blank: true}, { data: { controller: "form" } } %>
+  <%= f.input :status, collection: [ "Accepting Candidates", "Open", "On Hold", "Placed", "Closed-Lost" ], as: :select %>
+  <%= f.input :is_live %>
+  <%= f.input :employment_type, collection: [ "Full-time", "Contract" ], as: :select %>
+  <%= f.input :salary %>
+  <%= f.submit "Save List", class: "btn btn-primary" %>
+<% end %>
