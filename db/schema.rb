@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_04_03_135212) do
+ActiveRecord::Schema[7.1].define(version: 2025_04_06_133019) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -66,6 +66,17 @@ ActiveRecord::Schema[7.1].define(version: 2025_04_03_135212) do
     t.index ["user_id"], name: "index_jobs_on_user_id"
   end
 
+  create_table "submissions", force: :cascade do |t|
+    t.bigint "job_id", null: false
+    t.bigint "candidate_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["candidate_id"], name: "index_submissions_on_candidate_id"
+    t.index ["job_id"], name: "index_submissions_on_job_id"
+    t.index ["user_id"], name: "index_submissions_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -86,4 +97,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_04_03_135212) do
   add_foreign_key "clients", "users"
   add_foreign_key "jobs", "client_contacts"
   add_foreign_key "jobs", "users"
+  add_foreign_key "submissions", "candidates"
+  add_foreign_key "submissions", "jobs"
+  add_foreign_key "submissions", "users"
 end
