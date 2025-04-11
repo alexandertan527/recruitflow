@@ -8,6 +8,10 @@ class SubmissionsController < ApplicationController
   def show
   end
 
+  def new
+    @submission = Submission.new
+  end
+
   def destroy
     @submission.destroy
     redirect_to params[:redirect_to].presence || submissions_path, notice: "Submission was deleted"

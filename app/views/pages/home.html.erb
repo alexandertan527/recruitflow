@@ -1,5 +1,13 @@
-<%= link_to "Candidates", candidates_path %>
-<%= link_to "Clients", clients_path %>
-<%= link_to "Contacts", client_contacts_path %>
-<%= link_to "Jobs", jobs_path %>
-<%= link_to "Submissions", submissions_path %>
+<% if user_signed_in? %>
+  <%= link_to "Candidates", candidates_path %>
+  <%= link_to "Clients", clients_path %>
+  <%= link_to "Contacts", client_contacts_path %>
+  <%= link_to "Jobs", jobs_path %>
+  <%= link_to "Submissions", submissions_path %>
+<% else %>
+  HOMEPAGE
+
+  PLEASE LOG IN
+
+  <%= link_to "Sign In", new_user_registration_path %>
+<% end %>
