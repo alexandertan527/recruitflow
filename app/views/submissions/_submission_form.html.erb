@@ -1,0 +1,19 @@
+<% if params[:candidate_id] %>
+  <%= simple_form_for([@candidate, @submission]) do |f| %>
+    <%= f.input :candidate_id, as: :hidden, input_html: { value: @candidate.id } %>
+    <%= f.input :candidate_name, label: "Candidate", input_html: { value: "#{@candidate.first_name} #{@candidate.last_name}", disabled: true } %>
+    <%= f.select :job_id,
+      Job.all.map { |job| ["#{job.id} - #{job.job_title} - #{job.client_contact.client.name}", job.id] },
+      {include_blank: true}, { data: { controller: "form" } } %>
+    <%= f.submit "Submit", class: "btn btn-primary" %>
+  <% end %>
+<% elsif params[:job_id] %>
+  <%= simple_form_for([@job, @submission]) do |f| %>
+    <%= f.input :job_id, as: :hidden, input_html: { value: @job.id } %>
+    <%= f.input :job_title, label: "Job", input_html: { value: "#{@job.job_title}", disabled: true } %>
+    <%= f.select :candidate_id,
+      Candidate.all.map { |candidate| ["#{candidate.id} - #{candidate.first_name} #{candidate.last_name}", candidate.id] },
+      {include_blank: true}, { data: { controller: "form" } } %>
+    <%= f.submit "Submit", class: "btn btn-primary" %>
+  <% end %>
+<% end %>
