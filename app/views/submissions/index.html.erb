@@ -8,4 +8,5 @@
   <%= field link_to("#{submission.job.client_contact.client.name}", client_path(submission.job.client_contact.client)) %>
   <%= field submission.created_at %>
   <%= field "#{submission.user.first_name} #{submission.user.last_name}" %>
+  <%= field link_to("Delete", submission_path(submission), data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this submission?"}) %>
 <% end %>
