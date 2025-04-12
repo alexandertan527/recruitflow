@@ -5,7 +5,7 @@
   <%= field interview.interview_date %>
   <%= field link_to("#{interview.candidate.first_name} #{interview.candidate.last_name}", candidate_path(interview.candidate)) %>
   <%= field link_to("#{interview.job.job_title}", job_path(interview.job)) %>
-  <%= field interview.type %>
+  <%= field interview.interview_type %>
   <%= field link_to("#{interview.job.client_contact.first_name} #{interview.job.client_contact.last_name}", client_contact_path(interview.job.client_contact) ) %>
   <%= field link_to("#{interview.job.client_contact.client.name}", client_path(interview.job.client_contact.client)) %>
   <%= field interview.created_at %>

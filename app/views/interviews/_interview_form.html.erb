@@ -5,7 +5,7 @@
     <%= f.select :job_id,
       Job.all.map { |job| ["#{job.id} - #{job.job_title} - #{job.client_contact.client.name}", job.id] },
       {include_blank: true}, { data: { controller: "form" } } %>
-    <%= f.input :type, collection: [ "1st Interview", "2nd Interview", "Further Interview", "Final Interview" ], as: :select %>
+    <%= f.input :interview_type, collection: [ "1st Interview", "2nd Interview", "Further Interview", "Final Interview" ], as: :select %>
     <%= f.input :interview_date, as: :datetime %>
     <%= f.submit "Submit", class: "btn btn-primary" %>
   <% end %>
@@ -16,6 +16,21 @@
     <%= f.select :candidate_id,
       Candidate.all.map { |candidate| ["#{candidate.id} - #{candidate.first_name} #{candidate.last_name}", candidate.id] },
       {include_blank: true}, { data: { controller: "form" } } %>
+    <%= f.input :interview_type, collection: [ "1st Interview", "2nd Interview", "Further Interview", "Final Interview" ], as: :select %>
+    <%= f.input :interview_date, as: :datetime %>
+    <%= f.submit "Submit", class: "btn btn-primary" %>
+  <% end %>
+<% else %>
+  <%= simple_form_for([@interview]) do |f| %>
+    <%= f.input :job_id, as: :hidden, input_html: { value: @interview.job.id } %>
+    <%= f.select :job_id,
+      Job.all.map { |job| ["#{job.id} - #{job.job_title} - #{job.client_contact.client.name}", job.id] },
+      {include_blank: true}, { data: { controller: "form" } } %>
+    <%= f.select :candidate_id,
+      Candidate.all.map { |candidate| ["#{candidate.id} - #{candidate.first_name} #{candidate.last_name}", candidate.id] },
+      {include_blank: true}, { data: { controller: "form" } } %>
+    <%= f.input :interview_type, collection: [ "1st Interview", "2nd Interview", "Further Interview", "Final Interview" ], as: :select %>
+    <%= f.input :interview_date, as: :datetime %>
     <%= f.submit "Submit", class: "btn btn-primary" %>
   <% end %>
 <% end %>

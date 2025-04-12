@@ -1,0 +1,19 @@
+<% if params[:candidate_id]%>
+  <%= link_to "Edit Interview", edit_candidate_interview_path(@interview) %>
+<% elsif params[:job_id] %>
+  <%= link_to "Edit Interview", edit_candidate_interview_path(@interview) %>
+<% else %>
+  <%= link_to "Edit Interview", edit_interview_path(@interview) %>
+<% end %>
+<%= link_to "Delete Interview", interview_path(@interview), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+
+
+<h3><%= @interview.id %></h3> <h1><%= link_to("#{@interview.job.job_title}", job_path(@interview.job)) %></h1>
+
+<p><%= link_to("#{@interview.candidate.first_name} #{@interview.candidate.last_name}", candidate_path(@interview.candidate)) %></p>
+<p><%= link_to("#{@interview.job.client_contact.first_name} #{@interview.job.client_contact.last_name}", client_contact_path(@interview.job.client_contact)) %></p>
+<p><%= link_to("#{@interview.job.client_contact.client.name}", client_path(@interview.job.client_contact.client)) %></p>
+<p><%= @interview.interview_type %></p>
+<p><%= @interview.interview_date %></p>
+<p><%= @interview.user.first_name %> <%= @interview.user.last_name %></p>
+<p><%= @interview.created_at %></p>

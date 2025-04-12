@@ -8,16 +8,16 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
   resources :candidates do
     resources :submissions, only: [:show, :new, :create, :destroy]
-    resources :interviews
+    resources :interviews, only: [:show, :new, :create, :edit, :update, :destroy]
   end
   resources :clients
   resources :client_contacts
   resources :jobs do
     resources :submissions, only: [:show, :new, :create, :destroy]
-    resources :interviews
+    resources :interviews, only: [:show, :new, :create, :destroy, :edit, :update,]
   end
   resources :submissions, only: [:index, :show, :destroy]
-  resources :interviews, only: [:index, :show, :destroy]
+  resources :interviews, only: [:index, :show, :edit, :update, :destroy]
 
 
 end
