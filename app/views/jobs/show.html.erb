@@ -47,3 +47,20 @@
   <% end %>
   <%= link_to "Add an interview", new_job_interview_path(@job) %>
 <% end %>
+
+
+<h2>Offers</h2>
+
+<% if @job.offers.count == 0 %>
+  <p>This Job has no offers yet!</p>
+  <%= link_to "Submit a candidate", new_job_offer_path(@job) %>
+<% else %>
+  <%= table_for @job.offers, [:id, :candidate, 'Created Date', 'Owner'] do |offer| %>
+    <%= field link_to(offer.id, job_offer_path(offer.job, offer)) %>
+    <%= field link_to("#{offer.candidate.first_name} #{offer.candidate.last_name}", candidate_path(offer.candidate)) %>
+    <%= field offer.created_at %>
+    <%= field "#{offer.user.first_name} #{offer.user.last_name}" %>
+    <%= field link_to("Delete", offer_path(offer, redirect_to: job_path(@job)), data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this offer?"}) %>
+  <% end %>
+  <%= link_to "Submit a candidate", new_job_offer_path(@job) %>
+<% end %>

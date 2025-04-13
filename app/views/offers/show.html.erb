@@ -1,0 +1,10 @@
+<%= link_to "Delete Offer", offer_path(@offer), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+
+
+<h3><%= @offer.id %></h3> <h1><%= link_to("#{@offer.job.job_title}", job_path(@offer.job)) %></h1>
+
+<p><%= link_to("#{@offer.candidate.first_name} #{@offer.candidate.last_name}", candidate_path(@offer.candidate)) %></p>
+<p><%= link_to("#{@offer.job.client_contact.first_name} #{@offer.job.client_contact.last_name}", client_contact_path(@offer.job.client_contact)) %></p>
+<p><%= link_to("#{@offer.job.client_contact.client.name}", client_path(@offer.job.client_contact.client)) %></p>
+<p><%= @offer.user.first_name %> <%= @offer.user.last_name %></p>
+<p><%= @offer.created_at %></p>

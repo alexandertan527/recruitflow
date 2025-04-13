@@ -3,7 +3,7 @@ class InterviewsController < ApplicationController
   before_action :find_candidate_or_job, only: [:new, :create, :edit, :update]
 
   def index
-    @interviews = Interview.all
+    @interviews = Interview.all.order(id: :desc)
   end
 
   def show
