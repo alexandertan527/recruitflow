@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_04_12_223045) do
+ActiveRecord::Schema[7.1].define(version: 2025_04_13_111525) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -79,6 +79,17 @@ ActiveRecord::Schema[7.1].define(version: 2025_04_12_223045) do
     t.index ["user_id"], name: "index_jobs_on_user_id"
   end
 
+  create_table "offers", force: :cascade do |t|
+    t.bigint "candidate_id", null: false
+    t.bigint "job_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["candidate_id"], name: "index_offers_on_candidate_id"
+    t.index ["job_id"], name: "index_offers_on_job_id"
+    t.index ["user_id"], name: "index_offers_on_user_id"
+  end
+
   create_table "submissions", force: :cascade do |t|
     t.bigint "job_id", null: false
     t.bigint "candidate_id", null: false
@@ -113,6 +124,9 @@ ActiveRecord::Schema[7.1].define(version: 2025_04_12_223045) do
   add_foreign_key "interviews", "users"
   add_foreign_key "jobs", "client_contacts"
   add_foreign_key "jobs", "users"
+  add_foreign_key "offers", "candidates"
+  add_foreign_key "offers", "jobs"
+  add_foreign_key "offers", "users"
   add_foreign_key "submissions", "candidates"
   add_foreign_key "submissions", "jobs"
   add_foreign_key "submissions", "users"
