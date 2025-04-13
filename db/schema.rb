@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_04_13_111525) do
+ActiveRecord::Schema[7.1].define(version: 2025_04_13_130433) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -90,6 +90,22 @@ ActiveRecord::Schema[7.1].define(version: 2025_04_13_111525) do
     t.index ["user_id"], name: "index_offers_on_user_id"
   end
 
+  create_table "placements", force: :cascade do |t|
+    t.string "employment_type"
+    t.string "status"
+    t.integer "salary"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.bigint "job_id", null: false
+    t.bigint "candidate_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["candidate_id"], name: "index_placements_on_candidate_id"
+    t.index ["job_id"], name: "index_placements_on_job_id"
+    t.index ["user_id"], name: "index_placements_on_user_id"
+  end
+
   create_table "submissions", force: :cascade do |t|
     t.bigint "job_id", null: false
     t.bigint "candidate_id", null: false
@@ -127,6 +143,9 @@ ActiveRecord::Schema[7.1].define(version: 2025_04_13_111525) do
   add_foreign_key "offers", "candidates"
   add_foreign_key "offers", "jobs"
   add_foreign_key "offers", "users"
+  add_foreign_key "placements", "candidates"
+  add_foreign_key "placements", "jobs"
+  add_foreign_key "placements", "users"
   add_foreign_key "submissions", "candidates"
   add_foreign_key "submissions", "jobs"
   add_foreign_key "submissions", "users"
