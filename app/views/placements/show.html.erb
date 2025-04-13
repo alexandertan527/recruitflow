@@ -1,0 +1,16 @@
+<%= link_to "Edit Placement", edit_placement_path %>
+<%= link_to "Delete Placement", placement_path(@placement), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+
+
+<h3><%= @placement.id %></h3> <h1><%= @placement.job.job_title %></h1>
+
+<p><%= link_to("#{@placement.candidate.first_name} #{@placement.candidate.last_name}", candidate_path(@placement.candidate)) %></p>
+<p><%= link_to("#{@placement.job.client_contact.client.name}", client_path(@placement.job.client_contact.client)) %></p>
+<p><%= link_to("#{@placement.job.client_contact.first_name} #{@placement.job.client_contact.last_name}", client_contact_path(@placement.job.client_contact)) %></p>
+<p><%= @placement.status %></p>
+<p><%= @placement.employment_type %></p>
+<p><%= @placement.salary %></p>
+<p><%= @placement.user.first_name %> <%= @placement.user.last_name %></p>
+<p><%= @placement.created_at %></p>
+<p><%= @placement.start_date %></p>
+<p><%= @placement.end_date %></p>

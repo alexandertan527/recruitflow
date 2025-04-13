@@ -66,3 +66,44 @@
   <% end %>
   <%= link_to "Submit to a job", new_candidate_offer_path(@candidate) %>
 <% end %>
+
+
+<h2>Placements</h2>
+
+<% if @candidate.placement.nil? %>
+  <p>This candidate has not been placed!</p>
+  <%= link_to "Add a placement", new_candidate_placement_path(@candidate) %>
+<% else %>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Job Title</th>
+        <th>Client</th>
+        <th>Contact</th>
+        <th>Status</th>
+        <th>Employment Type</th>
+        <th>Salary</th>
+        <th>Created Date</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Owner</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= link_to @candidate.placement.id, placement_path(@candidate.placement) %></td>
+        <td><%= link_to "#{@candidate.placement.job.job_title}", job_path(@candidate.placement.job) %></td>
+        <td><%= link_to "#{@candidate.placement.job.client_contact.client.name}", client_path(@candidate.placement.job.client_contact.client) %></td>
+        <td><%= link_to "#{@candidate.placement.job.client_contact.first_name} #{@candidate.placement.job.client_contact.last_name}", client_contact_path(@candidate.placement.job.client_contact) %></td>
+        <td><%= @candidate.placement.status %></td>
+        <td><%= @candidate.placement.employment_type %></td>
+        <td><%= @candidate.placement.salary %></td>
+        <td><%= @candidate.placement.created_at %></td>
+        <td><%= @candidate.placement.start_date %></td>
+        <td><%= @candidate.placement.end_date %></td>
+        <td><%= "#{@candidate.placement.user.first_name} #{@candidate.placement.user.last_name}" %></td>
+      </tr>
+    </tbody>
+  </table>
+<% end %>

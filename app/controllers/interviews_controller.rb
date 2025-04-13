@@ -61,7 +61,7 @@ class InterviewsController < ApplicationController
     if params[:candidate_id]
       @candidate = Candidate.find(params[:candidate_id])
     elsif params[:job_id]
-      @job = Job.find(params[:job_id]) if params[:job_id] != nil
+      @job = Job.find(params[:job_id])
     end
   end
 

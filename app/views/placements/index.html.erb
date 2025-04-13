@@ -1,0 +1,17 @@
+<%= link_to 'New Placement', new_placement_path %>
+
+<h1>Placements</h1>
+
+<%= table_for @placements, ['ID', 'Job Title', :candidate, 'Client', :client_contact, :status, :employment_type, :salary, 'Job ID', 'Created Date', 'Owner'] do |placement| %>
+  <%= field link_to(placement.id, placement_path(placement)) %>
+  <%= field link_to("#{placement.job.job_title}", placement_path(placement)) %>
+  <%= field link_to("#{placement.candidate.first_name} #{placement.candidate.last_name}", candidate_path(placement.candidate) ) %>
+  <%= field link_to("#{placement.job.client_contact.client.name}", client_path(placement.job.client_contact.client)) %>
+  <%= field link_to("#{placement.job.client_contact.first_name} #{placement.job.client_contact.last_name}", client_contact_path(placement.job.client_contact) ) %>
+  <%= field placement.status %>
+  <%= field placement.employment_type %>
+  <%= field placement.salary %>
+  <%= field link_to(placement.job.id, job_path(placement.job)) %>
+  <%= field placement.created_at %>
+  <%= field "#{placement.user.first_name} #{placement.user.last_name}" %>
+<% end %>
