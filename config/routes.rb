@@ -9,15 +9,18 @@ Rails.application.routes.draw do
   resources :candidates do
     resources :submissions, only: [:show, :new, :create, :destroy]
     resources :interviews, only: [:show, :new, :create, :edit, :update, :destroy]
+    resources :offers, only: [:show, :new, :create, :destroy]
   end
   resources :clients
   resources :client_contacts
   resources :jobs do
     resources :submissions, only: [:show, :new, :create, :destroy]
-    resources :interviews, only: [:show, :new, :create, :destroy, :edit, :update,]
+    resources :interviews, only: [:show, :new, :create, :destroy, :edit, :update, :destroy]
+    resources :offers, only: [:show, :new, :create, :destroy]
   end
   resources :submissions, only: [:index, :show, :destroy]
   resources :interviews, only: [:index, :show, :edit, :update, :destroy]
+  resources :offers, only: [:index, :show, :destroy]
 
 
 end
