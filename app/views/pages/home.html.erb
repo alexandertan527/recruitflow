@@ -1,16 +1,52 @@
-<% if user_signed_in? %>
-  <%= link_to "Candidates", candidates_path %>
-  <%= link_to "Clients", clients_path %>
-  <%= link_to "Contacts", client_contacts_path %>
-  <%= link_to "Jobs", jobs_path %>
-  <%= link_to "Submissions", submissions_path %>
-  <%= link_to "Interviews", interviews_path %>
-  <%= link_to "Offers", offers_path %>
-  <%= link_to "Placements", placements_path %>
-<% else %>
-  HOMEPAGE
+<div class="container">
+  <% if user_signed_in? %>
+  <div class="container text-center d-flex flex-column justify-content-center align-items-center" style="height: 80vh;">
+    <div class="row">
+      <div class="col col-lg-3 entity-grid p-2 m-2 d-flex flex-column justify-content-evenly align-items-center">
+        <%= link_to image_tag("candidate.svg", class: "entity-icon"), candidates_path %>
+        <%= link_to "Candidates", candidates_path %>
+      </div>
+      <div class="col col-lg-3 entity-grid p-2 m-2 d-flex flex-column justify-content-evenly align-items-center">
+        <%= link_to image_tag("company.svg", class: "entity-icon"), clients_path %>
+        <%= link_to "Clients", clients_path %>
+      </div>
+      <div class="col col-lg-3 entity-grid p-2 m-2 d-flex flex-column justify-content-evenly align-items-center">
+        <%= link_to image_tag("contact.svg", class: "entity-icon"), client_contacts_path %>
+        <%= link_to "Contacts", client_contacts_path %>
+      </div>
+      <div class="col col-lg-3 entity-grid p-2 m-2 d-flex flex-column justify-content-evenly align-items-center">
+        <%= link_to image_tag("job.svg", class: "entity-icon"), jobs_path %>
+        <%= link_to "Jobs", jobs_path %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col col-lg-3 entity-grid p-2 m-2 d-flex flex-column justify-content-evenly align-items-center">
+        <%= link_to image_tag("submission.svg", class: "entity-icon"), submissions_path %>
+        <%= link_to "Submissions", submissions_path %>
+      </div>
+      <div class="col col-lg-3 entity-grid p-2 m-2 d-flex flex-column justify-content-evenly align-items-center">
+        <%= link_to image_tag("interview.svg", class: "entity-icon"), interviews_path %>
+        <%= link_to "Interviews", interviews_path %>
+      </div>
+      <div class="col col-lg-3 entity-grid p-2 m-2 d-flex flex-column justify-content-evenly align-items-center">
+        <%= link_to image_tag("offer.svg", class: "entity-icon"), offers_path %>
+        <%= link_to "Offers", offers_path %>
+      </div>
+      <div class="col col-lg-3 entity-grid p-2 m-2 d-flex flex-column justify-content-evenly align-items-center">
+        <%= link_to image_tag("placement.svg", class: "entity-icon"), placements_path %>
+        <%= link_to "Placements", placements_path %>
+      </div>
+    </div>
+  </div>
+  <% else %>
+    
+    <h1>RecruitFlow</h1>
+    <h5>From First Contact to First Day</h5>
 
-  PLEASE LOG IN
+    <%= link_to "Sign In", new_user_registration_path %>
+    (Also click the Sign In button for access to the demo account)
 
-  <%= link_to "Sign In", new_user_registration_path %>
-<% end %>
+    For new organisations:
+    <%= link_to "Contact Us", "#"%>
+  <% end %>
+</div>
