@@ -1,4 +1,4 @@
-<div class="container">
+
   <% if user_signed_in? %>
   <div class="container text-center d-flex flex-column justify-content-center align-items-center" style="height: 80vh;">
     <div class="row">
@@ -39,14 +39,20 @@
     </div>
   </div>
   <% else %>
-    
-    <h1>RecruitFlow</h1>
-    <h5>From First Contact to First Day</h5>
-
-    <%= link_to "Sign In", new_user_registration_path %>
-    (Also click the Sign In button for access to the demo account)
-
-    For new organisations:
-    <%= link_to "Contact Us", "#"%>
+    <section class="d-flex align-items-center mt-5 py-5 pe-5 me-5">
+      <div class="container d-flex justify-content-between align-items-end">
+        <div>
+          <h1>RecruitFlow</h1>
+          <h2>From First Contact to First Day</h2>
+        </div>
+        <div class="d-flex flex-column">
+            <%= button_to "Access Demo Account", demo_login_path, method: :post, class: "btn btn-primary btn-lg mb-2" %>
+            <%= link_to "Sign In", new_user_session_path, class: "btn btn-primary btn-lg mt-2" %>
+        </div>
+      </div>
+    </section>
+    <div class="d-flex flex-column justify-content-center align-items-center">
+      <p>For new organisations:</p>
+      <%= link_to "Get in touch!", "#", class: "btn btn-primary" %>
+    </div>
   <% end %>
-</div>
