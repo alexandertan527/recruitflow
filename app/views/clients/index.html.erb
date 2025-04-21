@@ -1,12 +1,19 @@
-<%= link_to 'New Client', new_client_path %>
+<div class="container mt-5">
+  <div class="d-flex justify-content-between mb-3">
+    <div class="d-flex justify-content-center">
+      <%= image_tag "company.svg", class: "show-icon" %>
+      <h1 class="m-0 ps-2">Clients</h1>
+    </div>
 
-<h1>Clients</h1>
+    <%= link_to '+ New Client', new_client_path, class: "d-flex align-items-center text-decoration-none" %>
+  </div>
 
-<%= table_for @clients, [:id, :name, :sector, :status, 'Created Date', 'Owner'] do |client| %>
-  <%= field link_to(client.id, client_path(client)) %>
-  <%= field link_to(client.name, client_path(client)) %>
-  <%= field client.sector %>
-  <%= field client.status %>
-  <%= field client.created_at %>
-  <%= field "#{client.user.first_name} #{client.user.last_name}" %>
-<% end %>
+  <%= table_for @clients, [:id, :name, :sector, :status, 'Created Date', 'Client Owner'], class: "table table-striped" do |client| %>
+    <%= field link_to(client.id, client_path(client)) %>
+    <%= field link_to(client.name, client_path(client)) %>
+    <%= field client.sector %>
+    <%= field client.status %>
+    <%= field client.created_at.strftime("%d-%m-%Y") %>
+    <%= field "#{client.user.first_name} #{client.user.last_name}" %>
+  <% end %>
+</div>

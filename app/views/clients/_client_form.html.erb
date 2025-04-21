@@ -1,6 +1,10 @@
-<%= simple_form_for(@client) do |f| %>
-  <%= f.input :name %>
-  <%= f.input :sector %>
-  <%= f.input :status, collection: [ "Active", "Hiring", "Passive Account", "Inactive" ], as: :select %>
-  <%= f.submit "Save List", class: "btn btn-primary" %>
-<% end %>
+<div class="container text-center my-5 py-5 rounded-5 shadow-lg">
+    <h1>New Client</h1>
+
+    <%= simple_form_for(@client) do |f| %>
+      <%= f.input :name, input_html: { class: "w-50 mx-auto" } %>
+      <%= f.input :sector, input_html: { class: "w-50 mx-auto" } %>
+      <%= f.input :status, collection: [ "Active", "Hiring", "Passive Account", "Inactive" ], as: :select, input_html: { class: "w-50 mx-auto" } %>
+      <%= f.submit "Save Client", class: "btn btn-primary" %>
+    <% end %>
+</div>

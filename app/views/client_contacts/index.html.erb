@@ -1,15 +1,22 @@
-<%= link_to 'New Contact', new_client_contact_path %>
+<div class="container mt-5">
+  <div class="d-flex justify-content-between mb-3">
+    <div class="d-flex justify-content-center">
+      <%= image_tag "contact.svg", class: "show-icon" %>
+      <h1 class="m-0 ps-2">Contacts</h1>
+    </div>
 
-<h1>Contacts</h1>
+    <%= link_to '+ New Contact', new_client_contact_path, class: "d-flex align-items-center text-decoration-none" %>
+  </div>
 
-<%= table_for @contacts, [:id, 'name', :client, :position, :status, :phone_number, :email, 'Created Date', 'Owner'] do |contact| %>
-  <%= field link_to(contact.id, client_contact_path(contact)) %>
-  <%= field link_to("#{contact.first_name} #{contact.last_name}", client_contact_path(contact)) %>
-  <%= field link_to("#{contact.client.name}", client_path(contact.client) ) %>
-  <%= field contact.position %>
-  <%= field contact.status %>
-  <%= field contact.phone_number %>
-  <%= field contact.email %>
-  <%= field contact.created_at %>
-  <%= field "#{contact.user.first_name} #{contact.user.last_name}" %>
-<% end %>
+  <%= table_for @contacts, [:id, 'name', :client, :position, :status, :phone_number, :email, 'Created Date', 'Contact Owner'], class: "table table-striped" do |contact| %>
+    <%= field link_to(contact.id, client_contact_path(contact)) %>
+    <%= field link_to("#{contact.first_name} #{contact.last_name}", client_contact_path(contact)) %>
+    <%= field link_to("#{contact.client.name}", client_path(contact.client) ) %>
+    <%= field contact.position %>
+    <%= field contact.status %>
+    <%= field contact.phone_number %>
+    <%= field contact.email %>
+    <%= field contact.created_at.strftime("%d-%m-%Y") %>
+    <%= field "#{contact.user.first_name} #{contact.user.last_name}" %>
+  <% end %>
+</div>

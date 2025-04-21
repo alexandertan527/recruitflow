@@ -1,13 +1,43 @@
-<%= link_to "Edit Contact", edit_client_contact_path %>
-<%= link_to "Delete Contact", client_contact_path(@contact), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+<div class="container my-5">
+  <div class="d-flex justify-content-between mb-5">
+    <div class="d-flex justify-content-center">
+      <%= image_tag "contact.svg", class: "show-icon" %>
+      <h1 class="m-0 ps-2"><%= @contact.first_name %> <%= @contact.last_name %></h1>
+    </div>
+    <div class="d-flex align-items-end">
+      <%= link_to "Edit Contact", edit_client_contact_path, class: "text-decoration-none" %>
+      <%= link_to "Delete Contact", client_contact_path(@contact), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "ms-4 text-decoration-none"  %>
+    </div>
+  </div>
 
+  <div class="container my-3 p-5 shadow rounded-5">
+    <div class="row">
+      <div class="col-md-4">
+        <p class="text-secondary m-0">Full Name</p><h4><%= @contact.first_name %> <%= @contact.last_name %></h4>
+      </div>
+      <div class="col-md-4">
+        <p class="text-secondary m-0">Company</p><h4><%= link_to @contact.client.name, client_path(@contact.client)  %></h4>
+      </div>
+      <div class="col-md-4">
+        <p class="text-secondary m-0">Email</p><h4><%= @contact.email %></h4>
+      </div>
+      <div class="col-md-4 mt-5">
+        <p class="text-secondary m-0">Phone Number</p><h4><%= @contact.phone_number %></h4>
+      </div>
+      <div class="col-md-4 mt-5">
+        <p class="text-secondary m-0">Position</p><h4><%= @contact.position %></h4>
+      </div>
+      <div class="col-md-4 mt-5">
+        <p class="text-secondary m-0">Status</p><h4><%= @contact.status %></h4>
+      </div>
+      <div class="col-md-4 mt-5">
+        <p class="text-secondary m-0">Contact Owner</p><h4><%= @contact.user.first_name %> <%= @contact.user.last_name %></h4>
+      </div>
+      <div class="col-md-4 mt-5">
+        <p class="text-secondary m-0">Created Date</p><h4><%= @contact.created_at.strftime("%d-%m-%Y") %></h4>
+      </div>
+    </div>
+  </div>
 
-<h3><%= @contact.id %></h3> <h1><%= @contact.first_name %> <%= @contact.last_name %></h1>
-
-<p><%= link_to("#{@contact.client.name}", client_path(@contact.client)) %></p>
-<p><%= @contact.position %></p>
-<p><%= @contact.status %></p>
-<p><%= @contact.phone_number %></p>
-<p><%= @contact.email %></p>
-<p><%= @contact.user.first_name %> <%= @contact.user.last_name %></p>
-<p><%= @contact.created_at %></p>
+  <h1>Add Jobs Accordion</h1>
+</div>

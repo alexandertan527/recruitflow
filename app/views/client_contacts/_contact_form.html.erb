@@ -1,10 +1,14 @@
-<%= simple_form_for(@contact) do |f| %>
-  <%= f.input :first_name %>
-  <%= f.input :last_name %>
-  <%= f.select :client_id, Client.pluck(:name, :id), {include_blank: true}, { data: { controller: "form" } } %>
-  <%= f.input :position %>
-  <%= f.input :status, collection: [ "Active", "Hiring", "Inactive" ], as: :select %>
-  <%= f.input :phone_number %>
-  <%= f.input :email %>
-  <%= f.submit "Save List", class: "btn btn-primary" %>
-<% end %>
+<div class="container text-center my-5 py-5 rounded-5 shadow-lg">
+    <h1>New Contact</h1>
+
+    <%= simple_form_for(@contact) do |f| %>
+      <%= f.input :first_name, input_html: { class: "w-50 mx-auto" } %>
+      <%= f.input :last_name, input_html: { class: "w-50 mx-auto" } %>
+      <%= f.input :client_id, collection: Client.pluck(:name, :id), include_blank: true, input_html: { class: "w-50 mx-auto", data: { controller: "form" } } %>
+      <%= f.input :position, input_html: { class: "w-50 mx-auto" } %>
+      <%= f.input :status, collection: [ "Active", "Hiring", "Inactive" ], as: :select, input_html: { class: "w-50 mx-auto" } %>
+      <%= f.input :phone_number, input_html: { class: "w-50 mx-auto" } %>
+      <%= f.input :email, input_html: { class: "w-50 mx-auto" } %>
+      <%= f.submit "Save Contact", class: "btn btn-primary" %>
+    <% end %>
+</div>

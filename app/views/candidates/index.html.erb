@@ -1,14 +1,21 @@
-<%= link_to 'New Candidate', new_candidate_path %>
+<div class="container mt-5">
+  <div class="d-flex justify-content-between mb-3">
+    <div class="d-flex justify-content-center">
+      <%= image_tag "candidate.svg", class: "show-icon" %>
+      <h1 class="m-0 ps-2">Candidates</h1>
+    </div>
 
-<h1>Candidates</h1>
+    <%= link_to '+ New Candidate', new_candidate_path, class: "d-flex align-items-center text-decoration-none" %>
+  </div>
 
-<%= table_for @candidates, [:id, 'Name', 'Current Position', :status, :email, :phone_number, 'Created Date', 'Owner' ] do |candidate| %>
-  <%= field link_to(candidate.id, candidate_path(candidate)) %>
-  <%= field link_to("#{candidate.first_name} #{candidate.last_name}", candidate_path(candidate)) %>
-  <%= field candidate.current_job_title %>
-  <%= field candidate.status %>
-  <%= field candidate.email %>
-  <%= field candidate.phone_number %>
-  <%= field candidate.created_at %>
-  <%= field "#{candidate.user.first_name} #{candidate.user.last_name}" %>
-<% end %>
+  <%= table_for @candidates, [:id, 'Name', 'Current Position', :status, :email, 'Phone Number', 'Created Date', 'Candidate Owner' ], class: "table table-striped" do |candidate| %>
+    <%= field link_to(candidate.id, candidate_path(candidate)) %>
+    <%= field link_to("#{candidate.first_name} #{candidate.last_name}", candidate_path(candidate)) %>
+    <%= field candidate.current_job_title %>
+    <%= field candidate.status %>
+    <%= field candidate.email %>
+    <%= field candidate.phone_number %>
+    <%= field candidate.created_at.strftime("%d-%m-%Y") %>
+    <%= field "#{candidate.user.first_name} #{candidate.user.last_name}" %>
+  <% end %>
+</div>

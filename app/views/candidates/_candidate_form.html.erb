@@ -1,9 +1,13 @@
-<%= simple_form_for(@candidate) do |f| %>
-  <%= f.input :first_name %>
-  <%= f.input :last_name %>
-  <%= f.input :email %>
-  <%= f.input :phone_number %>
-  <%= f.input :current_job_title %>
-  <%= f.input :status, collection: [ "Active", "Available", "Interviewing", "Under Offer", "Pre-screened", "Placed" ], as: :select %>
-  <%= f.submit "Save List", class: "btn btn-primary" %>
-<% end %>
+<div class="container text-center my-5 py-5 rounded-5 shadow-lg">
+    <h1>New Candidate</h1>
+
+    <%= simple_form_for(@candidate) do |f| %>
+      <%= f.input :first_name, input_html: { class: "w-50 mx-auto" } %>
+      <%= f.input :last_name, input_html: { class: "w-50 mx-auto" } %>
+      <%= f.input :email, input_html: { class: "w-50 mx-auto" } %>
+      <%= f.input :phone_number, input_html: { class: "w-50 mx-auto" } %>
+      <%= f.input :current_job_title, input_html: { class: "w-50 mx-auto" } %>
+      <%= f.input :status, collection: [ "Active", "Available", "Interviewing", "Under Offer", "Pre-screened", "Placed" ], as: :select, input_html: { class: "w-50 mx-auto" } %>
+      <%= f.submit "Save Candidate", class: "btn btn-primary" %>
+    <% end %>
+</div>
