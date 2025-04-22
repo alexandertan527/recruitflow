@@ -1,12 +1,21 @@
-<h1>Submissions</h1>
+<div class="container mt-5">
+  <div class="d-flex justify-content-between mb-3">
+    <div class="d-flex justify-content-center">
+      <%= image_tag "submission.svg", class: "show-icon" %>
+      <h1 class="m-0 ps-2">Submissions</h1>
+    </div>
 
-<%= table_for @submissions, [:id, :candidate, :job, 'Contact', 'Client', 'Created Date', 'Owner'] do |submission| %>
-  <%= field link_to(submission.id, submission_path(submission)) %>
-  <%= field link_to("#{submission.candidate.first_name} #{submission.candidate.last_name}", candidate_path(submission.candidate)) %>
-  <%= field link_to("#{submission.job.job_title}", job_path(submission.job)) %>
-  <%= field link_to("#{submission.job.client_contact.first_name} #{submission.job.client_contact.last_name}", client_contact_path(submission.job.client_contact) ) %>
-  <%= field link_to("#{submission.job.client_contact.client.name}", client_path(submission.job.client_contact.client)) %>
-  <%= field submission.created_at %>
-  <%= field "#{submission.user.first_name} #{submission.user.last_name}" %>
-  <%= field link_to("Delete", submission_path(submission), data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this submission?"}) %>
-<% end %>
+    <div class="d-flex align-items-center"><p>Go to a <%= link_to 'Job', jobs_path %> or a <%= link_to 'Candidate', candidates_path %> to add a submission!</p></div>
+  </div>
+
+  <%= table_for @submissions, [:id, :candidate, :job, 'Contact', 'Client', 'Created Date', 'Owner'], class: "table table-striped" do |submission| %>
+    <%= field link_to(submission.id, submission_path(submission)) %>
+    <%= field link_to("#{submission.candidate.first_name} #{submission.candidate.last_name}", candidate_path(submission.candidate)) %>
+    <%= field link_to("#{submission.job.job_title}", job_path(submission.job)) %>
+    <%= field link_to("#{submission.job.client_contact.first_name} #{submission.job.client_contact.last_name}", client_contact_path(submission.job.client_contact) ) %>
+    <%= field link_to("#{submission.job.client_contact.client.name}", client_path(submission.job.client_contact.client)) %>
+    <%= field submission.created_at.strftime("%d-%m-%Y") %>
+    <%= field "#{submission.user.first_name} #{submission.user.last_name}" %>
+    <%= field link_to("Delete", submission_path(submission), data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this submission?"}) %>
+  <% end %>
+</div>
