@@ -1,11 +1,27 @@
-<%= link_to "Delete Submission", submission_path(@submission), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+<div class="container my-5">
+  <div class="d-flex justify-content-between mb-5">
+    <div class="d-flex justify-content-center">
+      <%= image_tag "submission.svg", class: "show-icon" %>
+      <h1 class="m-0 ps-2"><%= @submission.job.job_title %></h1>
+    </div>
+    <div class="d-flex align-items-end">
+      <%= link_to "Delete Submission", submission_path(@submission), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "ms-4 text-decoration-none"  %>
+    </div>
+  </div>
 
-
-<h3><%= @submission.id %></h3> <h1><%= link_to("#{@submission.job.job_title}", job_path(@submission.job)) %></h1>
-
-<p><%= link_to("#{@submission.candidate.first_name} #{@submission.candidate.last_name}", candidate_path(@submission.candidate)) %></p>
-<p><%= link_to("#{@submission.job.client_contact.first_name} #{@submission.job.client_contact.last_name}", client_contact_path(@submission.job.client_contact)) %></p>
-<p><%= link_to("#{@submission.job.client_contact.client.name}", client_path(@submission.job.client_contact.client)) %></p>
-<p><%= @submission.user.first_name %> <%= @submission.user.last_name %></p>
-<p><%= @submission.created_at %></p>
-
+  <div class="container my-3 p-5 shadow rounded-5">
+    <div class="row">
+      <div class="col-md-4">
+        <p class="text-secondary m-0">Candidate</p><h4><%= link_to("#{@submission.candidate.first_name} #{@submission.candidate.last_name}", candidate_path(@submission.candidate)) %></h4>
+      </div>
+      <div class="col-md-4">
+        <p class="text-secondary m-0">Client</p><h4><%= link_to("#{@submission.job.client_contact.client.name}", client_path(@submission.job.client_contact.client)) %></h4>
+      </div>
+      <div class="col-md-4">
+        <p class="text-secondary m-0">Submission Owner</p><h4><%= @submission.user.first_name %> <%= @submission.user.last_name %></h4>
+      </div>
+      <div class="col-md-4 mt-5">
+        <p class="text-secondary m-0">Created Date</p><h4><%= @submission.created_at.strftime("%d-%m-%Y") %></h4>
+      </div>
+    </div>
+  </div>
