@@ -1,9 +1,16 @@
-<%= simple_form_for(@job) do |f| %>
-  <%= f.input :job_title %>
-  <%= f.select :client_contact_id, ClientContact.all.map { |c| ["#{c.first_name} #{c.last_name}", c.id]}, {include_blank: true}, { data: { controller: "form" } } %>
-  <%= f.input :status, collection: [ "Accepting Candidates", "Open", "On Hold", "Placed", "Closed-Lost" ], as: :select %>
-  <%= f.input :is_live %>
-  <%= f.input :employment_type, collection: [ "Full-time", "Contract" ], as: :select %>
-  <%= f.input :salary %>
-  <%= f.submit "Save List", class: "btn btn-primary" %>
-<% end %>
+<div class="container text-center my-5 py-5 rounded-5 shadow-lg">
+    <h1>New Job</h1>
+
+    <%= simple_form_for(@job) do |f| %>
+      <%= f.input :job_title, input_html: { class: "w-50 mx-auto" } %>
+      <%= f.input :client_contact_id,
+            collection: ClientContact.all.map { |c| ["#{c.first_name} #{c.last_name}", c.id] },
+            include_blank: true,
+            input_html:  { class: "w-50 mx-auto", data: { controller: "form" } } %>
+      <%= f.input :status, collection: [ "Accepting Candidates", "Open", "On Hold", "Placed", "Closed-Lost" ], as: :select, input_html: { class: "w-50 mx-auto" } %>
+      <%= f.input :is_live, input_html: { class: "" } %>
+      <%= f.input :employment_type, collection: [ "Full-time", "Contract" ], as: :select, input_html: { class: "w-50 mx-auto" } %>
+      <%= f.input :salary, input_html: { class: "w-50 mx-auto" } %>
+      <%= f.submit "Save Job", class: "btn btn-primary" %>
+    <% end %>
+</div>
