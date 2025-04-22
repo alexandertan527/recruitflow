@@ -1,19 +1,43 @@
-<% if params[:candidate_id]%>
-  <%= link_to "Edit Interview", edit_candidate_interview_path(@interview) %>
-<% elsif params[:job_id] %>
-  <%= link_to "Edit Interview", edit_candidate_interview_path(@interview) %>
-<% else %>
-  <%= link_to "Edit Interview", edit_interview_path(@interview) %>
-<% end %>
-<%= link_to "Delete Interview", interview_path(@interview), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+<div class="container my-5">
+  <div class="d-flex justify-content-between mb-5">
+    <div class="d-flex justify-content-center">
+      <%= image_tag "interview.svg", class: "show-icon" %>
+      <h1 class="m-0 ps-2"><%= @interview.candidate.first_name %> <%= @interview.candidate.last_name %> - <%= @interview.job.client_contact.client.name %></h1>
+    </div>
+    <div class="d-flex align-items-end">
+      <% if params[:candidate_id]%>
+        <%= link_to "Edit Interview", edit_candidate_interview_path(@interview), class: "text-decoration-none" %>
+      <% elsif params[:job_id] %>
+        <%= link_to "Edit Interview", edit_candidate_interview_path(@interview), class: "text-decoration-none" %>
+      <% else %>
+        <%= link_to "Edit Interview", edit_interview_path(@interview), class: "text-decoration-none" %>
+      <% end %>
+      <%= link_to "Delete Interview", interview_path(@interview), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "ms-4 text-decoration-none" %>
+    </div>
+  </div>
 
-
-<h3><%= @interview.id %></h3> <h1><%= link_to("#{@interview.job.job_title}", job_path(@interview.job)) %></h1>
-
-<p><%= link_to("#{@interview.candidate.first_name} #{@interview.candidate.last_name}", candidate_path(@interview.candidate)) %></p>
-<p><%= link_to("#{@interview.job.client_contact.first_name} #{@interview.job.client_contact.last_name}", client_contact_path(@interview.job.client_contact)) %></p>
-<p><%= link_to("#{@interview.job.client_contact.client.name}", client_path(@interview.job.client_contact.client)) %></p>
-<p><%= @interview.interview_type %></p>
-<p><%= @interview.interview_date %></p>
-<p><%= @interview.user.first_name %> <%= @interview.user.last_name %></p>
-<p><%= @interview.created_at %></p>
+  <div class="container my-3 p-5 shadow rounded-5">
+    <div class="row">
+      <div class="col-md-4">
+        <p class="text-secondary m-0">Candidate</p><h4><%= link_to("#{@interview.candidate.first_name} #{@interview.candidate.last_name}", candidate_path(@interview.candidate)) %></h4>
+      </div>
+      <div class="col-md-4">
+        <p class="text-secondary m-0">Client</p><h4><%= link_to("#{@interview.job.client_contact.client.name}", client_path(@interview.job.client_contact.client)) %></h4>
+      </div>
+      <div class="col-md-4">
+        <p class="text-secondary m-0">Contact</p><h4><%= link_to("#{@interview.job.client_contact.first_name} #{@interview.job.client_contact.last_name}", client_contact_path(@interview.job.client_contact)) %></h4>
+      </div>
+      <div class="col-md-4 mt-5">
+        <p class="text-secondary m-0">Interview Date</p><h4><%= @interview.interview_date.strftime("%d-%m-%Y") %></h4>
+      </div>
+      <div class="col-md-4 mt-5">
+        <p class="text-secondary m-0">Interview Type</p><h4><%= @interview.interview_type %></h4>
+      </div>
+      <div class="col-md-4 mt-5">
+        <p class="text-secondary m-0">Interview Owner</p><h4><%= @interview.user.first_name %> <%= @interview.user.last_name %></h4>
+      </div>
+      <div class="col-md-4 mt-5">
+        <p class="text-secondary m-0">Created Date</p><h4><%= @interview.created_at.strftime("%d-%m-%Y") %></h4>
+      </div>
+    </div>
+  </div>

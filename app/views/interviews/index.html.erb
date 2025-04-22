@@ -1,14 +1,23 @@
-<h1>Interviews</h1>
+<div class="container mt-5">
+  <div class="d-flex justify-content-between mb-3">
+    <div class="d-flex justify-content-center">
+      <%= image_tag "interview.svg", class: "show-icon" %>
+      <h1 class="m-0 ps-2">Interviews</h1>
+    </div>
 
-<%= table_for @interviews, [:id, 'Interview Date', :candidate, :job, 'Type', 'Contact', 'Client', 'Created Date', 'Owner'] do |interview| %>
-  <%= field link_to(interview.id, interview_path(interview)) %>
-  <%= field interview.interview_date %>
-  <%= field link_to("#{interview.candidate.first_name} #{interview.candidate.last_name}", candidate_path(interview.candidate)) %>
-  <%= field link_to("#{interview.job.job_title}", job_path(interview.job)) %>
-  <%= field interview.interview_type %>
-  <%= field link_to("#{interview.job.client_contact.first_name} #{interview.job.client_contact.last_name}", client_contact_path(interview.job.client_contact) ) %>
-  <%= field link_to("#{interview.job.client_contact.client.name}", client_path(interview.job.client_contact.client)) %>
-  <%= field interview.created_at %>
-  <%= field "#{interview.user.first_name} #{interview.user.last_name}" %>
-  <%= field link_to("Delete", interview_path(interview), data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this interview?"}) %>
-<% end %>
+    <div class="d-flex align-items-center"><p>Go to a <%= link_to 'Job', jobs_path %> or a <%= link_to 'Candidate', candidates_path %> to add an interview!</p></div>
+  </div>
+
+  <%= table_for @interviews, [:id, 'Interview Date', :candidate, :job, 'Type', 'Contact', 'Client', 'Created Date', 'Interview Owner'], class: "table table-striped" do |interview| %>
+    <%= field link_to(interview.id, interview_path(interview)) %>
+    <%= field interview.interview_date.strftime("%d-%m-%Y") %>
+    <%= field link_to("#{interview.candidate.first_name} #{interview.candidate.last_name}", candidate_path(interview.candidate)) %>
+    <%= field link_to("#{interview.job.job_title}", job_path(interview.job)) %>
+    <%= field interview.interview_type %>
+    <%= field link_to("#{interview.job.client_contact.first_name} #{interview.job.client_contact.last_name}", client_contact_path(interview.job.client_contact) ) %>
+    <%= field link_to("#{interview.job.client_contact.client.name}", client_path(interview.job.client_contact.client)) %>
+    <%= field interview.created_at.strftime("%d-%m-%Y") %>
+    <%= field "#{interview.user.first_name} #{interview.user.last_name}" %>
+    <%= field link_to("Delete", interview_path(interview), data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this interview?"}) %>
+  <% end %>
+</div>
