@@ -1,12 +1,21 @@
-<h1>Offers</h1>
+<div class="container mt-5">
+  <div class="d-flex justify-content-between mb-3">
+    <div class="d-flex justify-content-center">
+      <%= image_tag "offer.svg", class: "show-icon" %>
+      <h1 class="m-0 ps-2">Offers</h1>
+    </div>
 
-<%= table_for @offers, [:id, :candidate, :job, 'Contact', 'Client', 'Created Date', 'Owner'] do |offer| %>
-  <%= field link_to(offer.id, offer_path(offer)) %>
-  <%= field link_to("#{offer.candidate.first_name} #{offer.candidate.last_name}", candidate_path(offer.candidate)) %>
-  <%= field link_to("#{offer.job.job_title}", job_path(offer.job)) %>
-  <%= field link_to("#{offer.job.client_contact.first_name} #{offer.job.client_contact.last_name}", client_contact_path(offer.job.client_contact) ) %>
-  <%= field link_to("#{offer.job.client_contact.client.name}", client_path(offer.job.client_contact.client)) %>
-  <%= field offer.created_at %>
-  <%= field "#{offer.user.first_name} #{offer.user.last_name}" %>
-  <%= field link_to("Delete", offer_path(offer), data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this offer?"}) %>
-<% end %>
+    <div class="d-flex align-items-center"><p>Go to a <%= link_to 'Job', jobs_path %> or a <%= link_to 'Candidate', candidates_path %> to add an offer!</p></div>
+  </div>
+
+  <%= table_for @offers, [:id, :candidate, :job, 'Contact', 'Client', 'Created Date', 'Offer Owner'], class: "table table-striped" do |offer| %>
+    <%= field link_to(offer.id, offer_path(offer)) %>
+    <%= field link_to("#{offer.candidate.first_name} #{offer.candidate.last_name}", candidate_path(offer.candidate)) %>
+    <%= field link_to("#{offer.job.job_title}", job_path(offer.job)) %>
+    <%= field link_to("#{offer.job.client_contact.first_name} #{offer.job.client_contact.last_name}", client_contact_path(offer.job.client_contact) ) %>
+    <%= field link_to("#{offer.job.client_contact.client.name}", client_path(offer.job.client_contact.client)) %>
+    <%= field offer.created_at.strftime("%d-%m-%Y") %>
+    <%= field "#{offer.user.first_name} #{offer.user.last_name}" %>
+    <%= field link_to("Delete", offer_path(offer), data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this offer?"}) %>
+  <% end %>
+</div>

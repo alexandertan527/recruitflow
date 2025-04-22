@@ -9,7 +9,7 @@
             collection: Job.all.map { |c| ["#{c.id} - #{c.job_title} - #{c.client_contact.client.name}", c.id] },
             include_blank: true,
             input_html:  { class: "w-50 mx-auto", data: { controller: "form" } } %>
-      <%= f.submit "Submit", class: "btn btn-primary" %>
+      <%= f.submit "Save", class: "btn btn-primary" %>
     <% end %>
   <% elsif params[:job_id] %>
     <%= simple_form_for([@job, @submission]) do |f| %>
@@ -18,7 +18,7 @@
       <%= f.input :candidate_id,
         collection: Candidate.all.map { |candidate| ["#{candidate.id} - #{candidate.first_name} #{candidate.last_name}", candidate.id] },
         include_blank: true, input_html: { class: "w-50 mx-auto", data: { controller: "form" } } %>
-      <%= f.submit "Submit", class: "btn btn-primary" %>
+      <%= f.submit "Save", class: "btn btn-primary" %>
     <% end %>
   <% end %>
 </div>

@@ -1,10 +1,33 @@
-<%= link_to "Delete Offer", offer_path(@offer), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+<div class="container my-5">
+  <div class="d-flex justify-content-between mb-5">
+    <div class="d-flex justify-content-center">
+      <%= image_tag "offer.svg", class: "show-icon" %>
+      <h1 class="m-0 ps-2"><%= @offer.candidate.first_name %> <%= @offer.candidate.last_name %> - <%= @offer.job.client_contact.client.name %></h1>
+    </div>
+    <div class="d-flex align-items-end">
+      <%= link_to "Delete Offer", offer_path(@offer), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "ms-4 text-decoration-none"  %>
+    </div>
+  </div>
 
-
-<h3><%= @offer.id %></h3> <h1><%= link_to("#{@offer.job.job_title}", job_path(@offer.job)) %></h1>
-
-<p><%= link_to("#{@offer.candidate.first_name} #{@offer.candidate.last_name}", candidate_path(@offer.candidate)) %></p>
-<p><%= link_to("#{@offer.job.client_contact.first_name} #{@offer.job.client_contact.last_name}", client_contact_path(@offer.job.client_contact)) %></p>
-<p><%= link_to("#{@offer.job.client_contact.client.name}", client_path(@offer.job.client_contact.client)) %></p>
-<p><%= @offer.user.first_name %> <%= @offer.user.last_name %></p>
-<p><%= @offer.created_at %></p>
+  <div class="container my-3 p-5 shadow rounded-5">
+    <div class="row">
+      <div class="col-md-4">
+        <p class="text-secondary m-0">Candidate</p><h4><%= link_to("#{@offer.candidate.first_name} #{@offer.candidate.last_name}", candidate_path(@offer.candidate)) %></h4>
+      </div>
+      <div class="col-md-4">
+        <p class="text-secondary m-0">Job</p><h4><%= link_to("#{@offer.job.job_title}", job_path(@offer.job)) %></h4>
+      </div>
+      <div class="col-md-4">
+        <p class="text-secondary m-0">Client</p><h4><%= link_to("#{@offer.job.client_contact.client.name}", client_path(@offer.job.client_contact.client)) %></h4>
+      </div>
+      <div class="col-md-4 mt-5">
+        <p class="text-secondary m-0">Contact</p><h4><%= link_to("#{@offer.job.client_contact.first_name} #{@offer.job.client_contact.last_name}", client_contact_path(@offer.job.client_contact)) %></h4>
+      </div>
+      <div class="col-md-4 mt-5">
+        <p class="text-secondary m-0">Offer Owner</p><h4><%= @offer.user.first_name %> <%= @offer.user.last_name %></h4>
+      </div>
+      <div class="col-md-4 mt-5">
+        <p class="text-secondary m-0">Created Date</p><h4><%= @offer.created_at.strftime("%d-%m-%Y") %></h4>
+      </div>
+    </div>
+  </div>
