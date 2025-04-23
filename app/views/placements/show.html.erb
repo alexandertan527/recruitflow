@@ -1,16 +1,50 @@
-<%= link_to "Edit Placement", edit_placement_path %>
-<%= link_to "Delete Placement", placement_path(@placement), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+<div class="container my-5">
+  <div class="d-flex justify-content-between mb-5">
+    <div class="d-flex justify-content-center">
+      <%= image_tag "placement.svg", class: "show-icon" %>
+      <h1 class="m-0 ps-2"><%= @placement.candidate.first_name %> <%= @placement.candidate.last_name %> - <%= @placement.job.client_contact.client.name%></h1>
+    </div>
+    <div class="d-flex align-items-end">
+      <%= link_to "Edit Placement", edit_placement_path, class: "text-decoration-none" %>
+      <%= link_to "Delete Placement", placement_path(@placement), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "ms-4 text-decoration-none"  %>
+    </div>
+  </div>
 
-
-<h3><%= @placement.id %></h3> <h1><%= @placement.job.job_title %></h1>
-
-<p><%= link_to("#{@placement.candidate.first_name} #{@placement.candidate.last_name}", candidate_path(@placement.candidate)) %></p>
-<p><%= link_to("#{@placement.job.client_contact.client.name}", client_path(@placement.job.client_contact.client)) %></p>
-<p><%= link_to("#{@placement.job.client_contact.first_name} #{@placement.job.client_contact.last_name}", client_contact_path(@placement.job.client_contact)) %></p>
-<p><%= @placement.status %></p>
-<p><%= @placement.employment_type %></p>
-<p><%= @placement.salary %></p>
-<p><%= @placement.user.first_name %> <%= @placement.user.last_name %></p>
-<p><%= @placement.created_at %></p>
-<p><%= @placement.start_date %></p>
-<p><%= @placement.end_date %></p>
+  <div class="container my-3 p-5 shadow rounded-5">
+    <div class="row">
+      <div class="col-md-4">
+        <p class="text-secondary m-0">Candidate</p><h4><%= link_to("#{@placement.candidate.first_name} #{@placement.candidate.last_name}", candidate_path(@placement.candidate)) %></h4>
+      </div>
+      <div class="col-md-4">
+        <p class="text-secondary m-0">Job Title</p><h4><%= link_to("#{@placement.job.job_title}", job_path(@placement.job)) %></h4>
+      </div>
+      <div class="col-md-4">
+        <p class="text-secondary m-0">Client</p><h4><%= link_to("#{@placement.job.client_contact.client.name}", client_path(@placement.job.client_contact.client)) %></h4>
+      </div>
+      <div class="col-md-4 mt-5">
+        <p class="text-secondary m-0">Contact</p><h4><%= link_to("#{@placement.job.client_contact.first_name} #{@placement.job.client_contact.last_name}", client_contact_path(@placement.job.client_contact)) %></h4>
+      </div>
+      <div class="col-md-4 mt-5">
+        <p class="text-secondary m-0">Status</p><h4><%= @placement.status %></h4>
+      </div>
+      <div class="col-md-4 mt-5">
+        <p class="text-secondary m-0">Employment Type</p><h4><%= @placement.employment_type %></h4>
+      </div>
+      <div class="col-md-4 mt-5">
+        <p class="text-secondary m-0">Salary</p><h4><%= @placement.salary %></h4>
+      </div>
+      <div class="col-md-4 mt-5">
+        <p class="text-secondary m-0">Placement Owner</p><h4><%= @placement.user.first_name %> <%= @placement.user.last_name %></h4>
+      </div>
+      <div class="col-md-4 mt-5">
+        <p class="text-secondary m-0">Start Date</p><h4><%= @placement.start_date.strftime("%d-%m-%Y") %></h4>
+      </div>
+      <div class="col-md-4 mt-5">
+        <p class="text-secondary m-0">End Date</p><h4><%= @placement.end_date.strftime("%d-%m-%Y") %></h4>
+      </div>
+      <div class="col-md-4 mt-5">
+        <p class="text-secondary m-0">Created Date</p><h4><%= @placement.created_at.strftime("%d-%m-%Y") %></h4>
+      </div>
+    </div>
+  </div>
+  </div>
