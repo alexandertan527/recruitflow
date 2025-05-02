@@ -1,5 +1,5 @@
 class OffersController < ApplicationController
-  before_action :set_offer, only: [:show]
+  before_action :set_offer, only: [:show, :destroy]
   before_action :find_candidate_or_job, only: [:new, :create]
 
   def index

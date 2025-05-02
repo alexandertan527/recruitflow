@@ -52,6 +52,7 @@ gem "simple_form", github: "heartcombo/simple_form"
 gem 'simple_table_for'
 gem "sassc-rails"
 gem 'faker'
+gem 'flatpickr'
 
 group :development, :test do
   gem "dotenv-rails"

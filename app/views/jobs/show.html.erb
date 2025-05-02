@@ -157,7 +157,7 @@
               <tbody>
                 <tr>
                   <td><%= link_to @job.placement.id, placement_path(@job.placement) %></td>
-                  <td><%= link_to "#{@job.placement.candidate.first_name} #{@job.placement.candidate.first_name}", candidate_path(@job.placement.candidate) %></td>
+                  <td><%= link_to "#{@job.placement.candidate.first_name} #{@job.placement.candidate.last_name}", candidate_path(@job.placement.candidate) %></td>
                   <td><%= link_to "#{@job.client_contact.client.name}", client_path(@job.client_contact.client) %></td>
                   <td><%= link_to "#{@job.client_contact.first_name} #{@job.client_contact.last_name}", client_contact_path(@job.client_contact) %></td>
                   <td><%= @job.placement.status %></td>
