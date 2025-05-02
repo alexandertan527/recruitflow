@@ -39,5 +39,35 @@
     </div>
   </div>
 
-  <h1>Add Jobs Accordion</h1>
+  <div class="accordion accordion-flush shadow mt-5" id="accordionFlushExample">
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+          <h5 class="m-0">Jobs</h5>
+        </button>
+      </h2>
+      <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+        <div class="accordion-body">
+          <% if @jobs.count == 0 %>
+            <p>This client has no jobs yet!</p>
+            <%= link_to "Add a job", new_job_path(@client) %>
+          <% else %>
+            <%= table_for @jobs, [:id, 'Job Title', 'Contact', 'Client', :status, 'Open', 'Employment Type', :salary, 'Created Date', 'Job Owner'], class: "table table-striped" do |job| %>
+              <%= field link_to(job.id, job_path(job)) %>
+              <%= field link_to("#{job.job_title}", job_path(job)) %>
+              <%= field link_to("#{job.client_contact.first_name} #{job.client_contact.last_name}", client_contact_path(job.client_contact) ) %>
+              <%= field link_to("#{job.client_contact.client.name}", client_path(job.client_contact.client)) %>
+              <%= field job.status %>
+              <%= field job.is_live ? "Yes" : "No" %>
+              <%= field job.employment_type %>
+              <%= field job.salary %>
+              <%= field job.created_at.strftime("%d-%m-%Y") %>
+              <%= field "#{job.user.first_name} #{job.user.last_name}" %>
+            <% end %>
+            <%= link_to "Add a job", new_job_path(@client) %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

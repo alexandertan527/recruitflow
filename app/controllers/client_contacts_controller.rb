@@ -6,6 +6,7 @@ class ClientContactsController < ApplicationController
   end
 
   def show
+    @jobs = Job.where(client_contact_id: @contact.id)
   end
 
   def new
