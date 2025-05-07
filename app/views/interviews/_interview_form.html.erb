@@ -10,7 +10,7 @@
             include_blank: true,
             input_html:  { class: "w-50 mx-auto", data: { controller: "form" } } %>
       <%= f.input :interview_type, collection: [ "1st Interview", "2nd Interview", "Further Interview", "Final Interview" ], as: :select, input_html: { class: "w-50 mx-auto" } %>
-      <%= f.input :interview_date, as: :datetime, class: "w-50 mx-auto" %>
+      <%= f.input :interview_date, as: :string, class: "w-50 mx-auto", input_html: { data: { controller: "datetimepicker" } } %>
       <%= f.submit "Save Interview", class: "btn btn-primary" %>
     <% end %>
   <% elsif params[:job_id] %>
@@ -21,7 +21,7 @@
         collection: Candidate.all.map { |candidate| ["#{candidate.id} - #{candidate.first_name} #{candidate.last_name}", candidate.id] },
         include_blank: true, input_html: { class: "w-50 mx-auto", data: { controller: "form" } } %>
       <%= f.input :interview_type, collection: [ "1st Interview", "2nd Interview", "Further Interview", "Final Interview" ], as: :select, input_html: { class: "w-50 mx-auto" } %>
-      <%= f.input :interview_date, as: :datetime, class: "w-50 mx-auto" %>
+      <%= f.input :interview_date, as: :string, class: "w-50 mx-auto", input_html: { data: { controller: "datetimepicker" } } %>
       <%= f.submit "Save Interview", class: "btn btn-primary" %>
     <% end %>
   <% else %>
@@ -35,7 +35,7 @@
             collection: Candidate.all.map { |candidate| ["#{candidate.id} - #{candidate.first_name} #{candidate.last_name}", candidate.id] },
             include_blank: true, input_html: { class: "w-50 mx-auto", data: { controller: "form" } } %>
       <%= f.input :interview_type, collection: [ "1st Interview", "2nd Interview", "Further Interview", "Final Interview" ], as: :select, input_html: { class: "w-50 mx-auto" } %>
-      <%= f.input :interview_date, as: :datetime, class: "w-50 mx-auto" %>
+      <%= f.input :interview_date, as: :string, class: "w-50 mx-auto", input_html: { data: { controller: "datetimepicker" } } %>
       <%= f.submit "Save Interview", class: "btn btn-primary" %>
     <% end %>
   <% end %>
