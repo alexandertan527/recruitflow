@@ -9,8 +9,8 @@
             collection: Job.all.map { |c| ["#{c.id} - #{c.job_title} - #{c.client_contact.client.name}", c.id] },
             include_blank: true,
             input_html:  { class: "w-50 mx-auto", data: { controller: "form" } } %>
-      <%= f.input :start_date, as: :date, input_html: { class: "w-50 mx-auto" } %>
-      <%= f.input :end_date, as: :date, input_html: { class: "w-50 mx-auto" } %>
+      <%= f.input :start_date, as: :string, input_html: { class: "w-50 mx-auto", data: { controller: "datepicker" } } %>
+      <%= f.input :end_date, as: :string, input_html: { class: "w-50 mx-auto", data: { controller: "datepicker" }  } %>
       <%= f.input :employment_type, collection: [ "Full-time", "Contract" ], as: :select, input_html: { class: "w-50 mx-auto" } %>
       <%= f.input :status, collection: [ "Submitted", "Approved", "Terminated", "Did Not Start" ], as: :select, input_html: { class: "w-50 mx-auto" } %>
       <%= f.input :salary, input_html: { class: "w-50 mx-auto" } %>
@@ -23,8 +23,8 @@
       <%= f.input :candidate_id,
         collection: Candidate.all.map { |candidate| ["#{candidate.id} - #{candidate.first_name} #{candidate.last_name}", candidate.id] },
         include_blank: true, input_html: { class: "w-50 mx-auto", data: { controller: "form" } } %>
-      <%= f.input :start_date, as: :date, input_html: { class: "w-50 mx-auto" } %>
-      <%= f.input :end_date, as: :date, input_html: { class: "w-50 mx-auto" } %>
+      <%= f.input :start_date, as: :string, input_html: { class: "w-50 mx-auto", data: { controller: "datepicker" }  } %>
+      <%= f.input :end_date, as: :string, input_html: { class: "w-50 mx-auto", data: { controller: "datepicker" }  } %>
       <%= f.input :employment_type, collection: [ "Full-time", "Contract" ], as: :select, input_html: { class: "w-50 mx-auto" } %>
       <%= f.input :status, collection: [ "Submitted", "Approved", "Terminated", "Did Not Start" ], as: :select, input_html: { class: "w-50 mx-auto" } %>
       <%= f.input :salary, input_html: { class: "w-50 mx-auto" } %>
@@ -39,8 +39,8 @@
       <%= f.input :candidate_id,
         collection: Candidate.all.map { |candidate| ["#{candidate.id} - #{candidate.first_name} #{candidate.last_name}", candidate.id] },
         include_blank: true, input_html: { class: "w-50 mx-auto", data: { controller: "form" } } %>
-      <%= f.input :start_date, as: :date, input_html: { class: "w-50 mx-auto" } %>
-      <%= f.input :end_date, as: :date, input_html: { class: "w-50 mx-auto" } %>
+      <%= f.input :start_date, as: :string, input_html: { class: "w-50 mx-auto", data: { controller: "datepicker" }  } %>
+      <%= f.input :end_date, as: :string, input_html: { class: "w-50 mx-auto", data: { controller: "datepicker" }  } %>
       <%= f.input :employment_type, collection: [ "Full-time", "Contract" ], as: :select, input_html: { class: "w-50 mx-auto" } %>
       <%= f.input :status, collection: [ "Submitted", "Approved", "Terminated", "Did Not Start" ], as: :select, input_html: { class: "w-50 mx-auto" } %>
       <%= f.input :salary, input_html: { class: "w-50 mx-auto" } %>
