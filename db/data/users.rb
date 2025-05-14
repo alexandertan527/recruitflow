@@ -35,6 +35,12 @@ def users
       last_name: "Whitaker",
       email: "noah@gmail.com",
       password: "password"
+    },
+    {
+      first_name: "Demo",
+      last_name: "Account",
+      email: "demo@gmail.com",
+      password: "password"
     }
   ]
 end

@@ -5,7 +5,7 @@ class PagesController < ApplicationController
   end
 
   def demo_login
-    demo_user = User.find(1)
+    demo_user = User.where(email: 'demo@gmail.com').first
     sign_in(demo_user)
     redirect_to root_path, notice: "Signed in as demo user"
   end
