@@ -8,7 +8,7 @@ def jobs
         job_title: Faker::Job.title,
         employment_type: employment_type,
         status: status,
-        is_live: %w[Open Accepting\ Candidates On\ Hold].include?(status) ? 1 : 0,
+        is_live: 1,
         salary: employment_type == "Full-time" ? rand(250..800) * 100 : 0,
         client_contact: ClientContact.all.sample,
         user: User.all.sample
