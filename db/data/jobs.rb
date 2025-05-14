@@ -2,22 +2,14 @@ require 'faker'
 
 def jobs
     return Array.new(30) do
+      employment_type = ["Full-time", "Contract"].sample
+      status = ["Open", "Accepting Candidates", "On Hold", "Placed", "Closed-Lost"].sample
       {
         job_title: Faker::Job.title,
-        employment_type: ["Full-time", "Contract"].sample,
-        status: ["Open", "Accepting Candidates", "On Hold", "Placed", "Closed-Lost"].sample,
-        is_live:
-          if :status == "Open" || :status == "Accepting Candidates" || :status == "On Hold"
-            1
-          elsif :status == "Placed" || :status == "Closed-Lost"
-            0
-          end,
-        salary:
-        if :employment_type == "Full-time"
-          rand(250..800) * 100
-        elsif :employment_type == "Contract"
-          0
-        end,
+        employment_type: employment_type,
+        status: status,
+        is_live: %w[Open Accepting\ Candidates On\ Hold].include?(status) ? 1 : 0,
+        salary: employment_type == "Full-time" ? rand(250..800) * 100 : 0,
         client_contact: ClientContact.all.sample,
         user: User.all.sample
       }

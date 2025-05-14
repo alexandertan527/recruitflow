@@ -27,9 +27,9 @@ require_relative "data/jobs"
 # clients.each { |client| Client.create!(client) }
 # p "Clients created..."
 
-p "Creating contacts..."
-contacts.each { |contact| ClientContact.create!(contact) }
-p "Clients created..."
+# p "Creating contacts..."
+# contacts.each { |contact| ClientContact.create!(contact) }
+# p "Contacts created..."
 
 p "Creating jobs..."
 jobs.each { |job| Job.create!(job) }
