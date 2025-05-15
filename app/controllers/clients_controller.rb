@@ -28,8 +28,11 @@ class ClientsController < ApplicationController
   end
 
   def update
-    @client.update(client_params)
-    redirect_to client_path(@client)
+    if @client.update(client_params)
+      redirect_to client_path(@client), notice: "Job was updated"
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy

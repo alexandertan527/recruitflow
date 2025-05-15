@@ -28,7 +28,7 @@
         <p class="text-secondary m-0">Contact</p><h4><%= link_to("#{@interview.job.client_contact.first_name} #{@interview.job.client_contact.last_name}", client_contact_path(@interview.job.client_contact)) %></h4>
       </div>
       <div class="col-md-4 mt-5">
-        <p class="text-secondary m-0">Interview Date</p><h4><%= @interview.interview_date.strftime("%d-%m-%Y") %></h4>
+        <p class="text-secondary m-0">Interview Date</p><h4><%= @interview.interview_date.strftime("%d-%m-%Y %H:%M") %></h4>
       </div>
       <div class="col-md-4 mt-5">
         <p class="text-secondary m-0">Interview Type</p><h4><%= @interview.interview_type %></h4>

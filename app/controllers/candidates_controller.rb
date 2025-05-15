@@ -26,8 +26,11 @@ class CandidatesController < ApplicationController
   end
 
   def update
-    @candidate.update(candidate_params)
-    redirect_to candidate_path(@candidate)
+    if @candidate.update(candidate_params)
+      redirect_to candidate_path(@candidate), notice: "Job was updated"
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy

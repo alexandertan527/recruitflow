@@ -27,8 +27,11 @@ class ClientContactsController < ApplicationController
   end
 
   def update
-    @contact.update(contact_params)
-    redirect_to client_contact_path(@contact)
+    if @contact.update(contact_params)
+      redirect_to client_contact_path(@contact), notice: "Job was updated"
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy

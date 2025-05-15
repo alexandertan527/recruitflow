@@ -9,4 +9,3 @@ pin "bootstrap", to: "bootstrap.min.js", preload: true
 pin "@popperjs/core", to: "popper.js", preload: true
 pin "slim-select" # @2.10.0
 pin "flatpickr", to: "https://cdn.skypack.dev/flatpickr"
-

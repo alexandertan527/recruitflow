@@ -85,7 +85,7 @@
           <% else %>
             <%= table_for @job.interviews, [:id, 'Interview Date', :candidate, 'Type', 'Contact', 'Client', 'Created Date', 'Interview Owner'], class: "table table-striped" do |interview| %>
               <%= field link_to(interview.id, job_interview_path(interview.job, interview)) %>
-              <%= field interview.interview_date.strftime("%d-%m-%Y") %>
+              <%= field interview.interview_date.strftime("%d-%m-%Y %H:%M") %>
               <%= field link_to("#{interview.candidate.first_name} #{interview.candidate.last_name}", candidate_path(interview.candidate)) %>
               <%= field interview.interview_type %>
               <%= field link_to("#{interview.job.client_contact.first_name} #{interview.job.client_contact.last_name}", client_contact_path(interview.job.client_contact) ) %>
