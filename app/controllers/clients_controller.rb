@@ -6,9 +6,8 @@ class ClientsController < ApplicationController
   end
 
   def show
-    @contacts = ClientContact.where(:client == @client)
+    @contacts = ClientContact.where(client_id: @client)
     @jobs = @client.jobs
-
   end
 
   def new
