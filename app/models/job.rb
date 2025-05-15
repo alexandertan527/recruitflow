@@ -5,7 +5,7 @@ class Job < ApplicationRecord
   has_many :interviews
   has_many :offers
   has_one :placement
-  validates :job_title, :status, :is_live, :employment_type, presence: :true
+  validates :job_title, :status, :employment_type, presence: :true
   validates :status, inclusion: { in: ["Accepting Candidates", "Open", "On Hold", "Placed", "Closed-Lost"]}
   validates :employment_type, inclusion: { in: ["Full-time", "Contract"]}
 end

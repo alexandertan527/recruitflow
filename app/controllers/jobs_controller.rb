@@ -26,8 +26,11 @@ class JobsController < ApplicationController
   end
 
   def update
-    @job.update(job_params)
-    redirect_to job_path(@job)
+    if @job.update(job_params)
+      redirect_to job_path(@job), notice: "Job was updated"
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy
@@ -42,7 +45,7 @@ class JobsController < ApplicationController
   end
 
   def job_params
-    params.require(:job).permit(:job_title, :client_contact, :status, :is_live, :employment_type, :salary)
+    params.require(:job).permit(:job_title, :client_contact_id, :status, :is_live, :employment_type, :salary)
   end
 
 end

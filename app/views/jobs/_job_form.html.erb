@@ -8,7 +8,7 @@
             include_blank: true,
             input_html:  { class: "w-50 mx-auto", data: { controller: "form" } } %>
       <%= f.input :status, collection: [ "Accepting Candidates", "Open", "On Hold", "Placed", "Closed-Lost" ], as: :select, input_html: { class: "w-50 mx-auto" } %>
-      <%= f.input :is_live, input_html: { class: "" } %>
+      <%= f.input :is_live %>
       <%= f.input :employment_type, collection: [ "Full-time", "Contract" ], as: :select, input_html: { class: "w-50 mx-auto" } %>
       <%= f.input :salary, input_html: { class: "w-50 mx-auto" } %>
       <%= f.submit "Save Job", class: "btn btn-primary" %>
